@@ -18,6 +18,8 @@ let canvas, ctx, raf;
 let numberOfWhiteKeys = 36;
 let canvasWidth = numberOfWhiteKeys * 42;
 let canvasHeight = window.innerHeight - 130;
+//responsive
+let leftSpace = (window.innerWidth - canvasWidth)/2;
 
 const getLeftWidth = (id) => {
   var isWhite = (keyboard.find(key => key.id === id))["white"];
@@ -150,7 +152,8 @@ class Piano extends Component {
         <div className="Piano-flow">
           <canvas id="canvas" width={`${canvasWidth}px`} height={`${canvasHeight}px`}></canvas>
         </div>
-        <div className="Piano-keyboard">
+        <div className="Piano-keyboard" style={{ marginLeft: `${leftSpace}px`}}>
+          
           {keyboard.map((key) => (
             <Key
               id={key.id}
