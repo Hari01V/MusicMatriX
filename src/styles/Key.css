@@ -1,0 +1,34 @@
+.Key{
+  width: 42px;
+  height: 100%;
+  border: 2px solid #d7d7d7;
+  background: #242424;
+  position: absolute;
+  cursor: pointer;
+  color: white;
+  user-select: none;
+}
+.Key-bg{
+  background: #2eccc5;
+  box-shadow: 0 0 1.6vw #2eccc5;
+}
+.black{
+  width: 36px;
+  height: 55%;
+  background: black;
+  z-index: 1;
+}
+.black.Key-bg{
+  background: #2eccc5;
+  box-shadow: 0 0 1.6vw #2eccc5;
+}
+.Key-char{
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  transform: translate(-50%);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: cursive;
+  user-select: none;
+}

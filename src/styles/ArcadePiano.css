@@ -1,0 +1,26 @@
+.Piano{
+  position: relative;
+}
+.Piano-flow{
+  position: relative;
+}
+.instructions{
+  max-width: 100px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 4;
+}
+.instructions button{
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.instructions svg{
+  width: 60px;
+  height: 60px;
+  color: #2eccc5;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 0 0 1.6vw #2eccc5;
+}
