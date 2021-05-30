@@ -1,0 +1,43 @@
+.arcade-upload{
+  position: absolute;
+  top: 100px;
+  right: 24px;
+  z-index: 4;
+  color: #2eccc5;
+}
+.arcade-upload-btn{
+  width: 60px;
+  height: 60px;
+  background: #242424;
+  color: #2eccc5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 1.6vw #2eccc5;
+}
+.arcade-upload-btn svg{
+  width: 40px;
+  height: 40px;
+}
+
+.arcade-dialog .MuiDialog-container .MuiDialog-paper{
+  background: #242424 !important;
+  color: #2eccc5;
+}
+
+.upload-dialog-content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.upload-dialog-content p{
+  margin-top: 0;
+}
+.dialog-cancel-btn{
+  background: white;
+  color: black;
+  text-align: center;
+  display: inline;
+  cursor: pointer;
+}

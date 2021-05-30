@@ -10,7 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-import '../styles/ArcadeInstructions.css';
+import '../styles/ArcadeMenu.css';
 
 let songs = ['Alan Walker - Alone', 'Alan Walker - Faded', 'Alan Walker - Alone', 'Alan Walker - Faded', 'Alan Walker - Alone', 'Alan Walker - Faded', 'Alan Walker - Alone', 'Alan Walker - Faded'];
 
@@ -43,7 +43,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ArcadeInstructions() {
+export default function ArcadeMenu() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false
@@ -83,7 +83,7 @@ export default function ArcadeInstructions() {
 
   let anchor = 'right';
   return (
-    <div className="arcadeInstructions">
+    <div className="arcademenu">
       <React.Fragment key={anchor}>
         <div className={classes.viewBtn}
           onClick={toggleDrawer(anchor, true)}>

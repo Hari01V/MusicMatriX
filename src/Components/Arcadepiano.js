@@ -6,13 +6,14 @@ import pianoBg from '../images/Bullseye-Gradient.svg';
 import '../styles/Piano.css';
 import '../styles/ArcadePiano.css';
 import $ from 'jquery';
-import ArcadeInstructions from './ArcadeInstructions.js';
+import ArcadeMenu from './ArcadeMenu.js';
 import ArcadeInfo from './ArcadeInfo.js';
 
 import PlayCircleFilledRoundedIcon from '@material-ui/icons/PlayCircleFilledRounded';
 
 // import song from '../database/Alan Walker - Faded.json'
 import song from '../database/Alan Walker - Alone.json'
+import ArcadeUpload from './ArcadeUpload.js';
 
 
 let intial = {};
@@ -27,7 +28,7 @@ let canvas, ctx, raf;
 let numberOfWhiteKeys = 36;
 let canvasWidth = numberOfWhiteKeys * 42;
 let canvasHeight = window.innerHeight - 130;
-let leftSpace = (window.innerWidth - canvasWidth)/2;
+let leftSpace = (window.innerWidth - canvasWidth) / 2;
 
 const getLeftWidth = (id) => {
   var isWhite = (keyboard.find(key => key.id === id))["white"];
@@ -241,7 +242,7 @@ class Piano extends Component {
           <canvas id="canvas" width={`${canvasWidth}px`} height={`${canvasHeight}px`}></canvas>
           <ArcadeInfo header={song["header"]} notes={notes} completedNotes={completedNotes} />
         </div>
-        <div className="Piano-keyboard" style={{ marginLeft: `${leftSpace}px`}}>
+        <div className="Piano-keyboard" style={{ marginLeft: `${leftSpace}px` }}>
           {keyboard.map((key) => (
             <Key
               id={key.id}
@@ -260,11 +261,13 @@ class Piano extends Component {
             <PlayCircleFilledRoundedIcon />
           </button>
         </div>
+        <ArcadeUpload />
+
         <MIDISounds
           ref={(ref) => (this.midiSounds = ref)}
           appElementName="root"
           instruments={[3]} />
-        <ArcadeInstructions />
+        <ArcadeMenu />
       </div>
     );
   }
