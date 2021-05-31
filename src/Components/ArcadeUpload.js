@@ -6,6 +6,8 @@ import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 
 import '../styles/ArcadeUpload.css';
 
+var Music = require('../models/music.js');
+
 export default function ArcadeUpload() {
   const [isValid, setIsValid] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -20,7 +22,7 @@ export default function ArcadeUpload() {
 
   const checkValidation = (event) => {
     const filePath = event.target.value;
-    if (filePath.match(/.mid$/)) {
+    if (filePath.match(/.json$/)) {
       setIsValid(true);
     } else {
       setIsValid(false);
@@ -29,8 +31,14 @@ export default function ArcadeUpload() {
 
   const updateDatabase = (event) => {
     event.preventDefault();
-    const file = document.querySelector("#file-upload").value;
-    console.log(file);
+    const file = document.querySelector("#file-upload").files[0];
+    const reader = new FileReader();
+    reader.addEventListener("loadend", () => {
+      console.log(reader.result);
+      //ADD IT TO DATABASE
+
+    });
+    reader.readAsText(file);
   }
 
   return (
@@ -43,7 +51,7 @@ export default function ArcadeUpload() {
         <DialogContent>
           <form action="" method="" className="upload-dialog-content">
             <p>
-              Upload a music file in .mid format to use it as Arcade music!
+              Upload a music file in .json format to use it as Arcade music!
             </p>
             <input type="file" id="file-upload" name="file-upload" onChange={checkValidation} />
             <div>
