@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import SyncIcon from '@material-ui/icons/Sync';
 
 import playingLogo from '../images/playIcon1.svg';
 
@@ -45,6 +46,8 @@ const useStyles = makeStyles({
   }
 });
 
+let refreshIcon = null;
+
 export default function ArcadeMenu(props) {
   const classes = useStyles();
   let { changeSong, currSongId } = props;
@@ -53,16 +56,30 @@ export default function ArcadeMenu(props) {
   });
 
   const [musicList, setMusicList] = useState([]);
-  api.getAllMusic().then(result => {
-    allMusicNames = [];
-    result.data.forEach(music => {
-      allMusicNames.push({
-        id: music._id,
-        name: music.name
+  const refreshGetAllMusic = () => {
+    api.getAllMusic().then(result => {
+      allMusicNames = [];
+      result.data.forEach(music => {
+        allMusicNames.push({
+          id: music._id,
+          name: music.name
+        });
       });
+      setMusicList(allMusicNames);
     });
-    setMusicList(allMusicNames);
-  });
+    refreshIcon = document.querySelector(".drawer-refresh svg");
+    if (refreshIcon) {
+      refreshIcon.style.transition = "1s ease-in-out"
+      refreshIcon.style.transform = "rotate(-360deg)";
+      setTimeout(() => {
+        refreshIcon.style.transition = "0s"
+        refreshIcon.style.transform = "rotate(0)";
+      }, 1000);
+    }
+  }
+  useEffect(() => {
+    refreshGetAllMusic();
+  }, [])
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -82,8 +99,14 @@ export default function ArcadeMenu(props) {
     >
       <div className="drawer-heading">
         MUSICMATRIX
+        <span className="drawer-refresh"
+          onClick={(event) => {
+            event.stopPropagation();
+            refreshGetAllMusic();
+          }}><SyncIcon /></span>
       </div>
       <Divider />
+
       <List>
         {musicList.map((music) => {
           return <div key={music.id}
