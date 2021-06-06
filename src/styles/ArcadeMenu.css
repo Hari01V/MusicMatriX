@@ -39,3 +39,11 @@
   align-items: center;
   margin: 12px 4px 8px 4px;
 }
+.disabled-item{
+}
+.playing-icon{
+  width: 50px;
+  height: 20px;
+  margin-left: 4px;
+  transform: rotate(180deg);
+}

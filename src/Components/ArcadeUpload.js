@@ -4,9 +4,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 
-import '../styles/ArcadeUpload.css';
+import api from '../api';
 
-var Music = require('../models/music.js');
+import '../styles/ArcadeUpload.css';
 
 export default function ArcadeUpload() {
   const [isValid, setIsValid] = React.useState(false);
@@ -34,9 +34,9 @@ export default function ArcadeUpload() {
     const file = document.querySelector("#file-upload").files[0];
     const reader = new FileReader();
     reader.addEventListener("loadend", () => {
-      console.log(reader.result);
+      // console.log(reader.result);
       //ADD IT TO DATABASE
-
+      api.addMusic(JSON.parse(reader.result));
     });
     reader.readAsText(file);
   }

@@ -3,7 +3,7 @@ import React from 'react';
 import '../styles/ArcadeInfo.css';
 
 export default function ArcadeInfo(props) {
-  const { header, notes, completedNotes } = props;
+  const { name, notes, completedNotes } = props;
 
   if (notes[completedNotes]) {
     const tmp = document.getElementById(`note-${completedNotes}`);
@@ -13,7 +13,7 @@ export default function ArcadeInfo(props) {
   }
   return (
     <div className="arcade-info">
-      <h1>{header["name"]}</h1>
+      <h1>{name}</h1>
       <p className="arcade-notes">
         <span className="space"></span>
         {notes.map((note, index) => <span id={`note-${index}`}

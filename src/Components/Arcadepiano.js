@@ -8,13 +8,10 @@ import '../styles/ArcadePiano.css';
 import $ from 'jquery';
 import ArcadeMenu from './ArcadeMenu.js';
 import ArcadeInfo from './ArcadeInfo.js';
-
+import ArcadeUpload from './ArcadeUpload.js';
 import PlayCircleFilledRoundedIcon from '@material-ui/icons/PlayCircleFilledRounded';
 
-// import song from '../database/Alan Walker - Faded.json'
-import song from '../database/Alan Walker - Alone.json'
-import ArcadeUpload from './ArcadeUpload.js';
-
+import api from '../api';
 
 let intial = {};
 keyboard.forEach(key => (
@@ -43,13 +40,6 @@ const getLeftWidth = (id) => {
 let notes = null;
 let totalDuration = null;
 let notesCount = 0;
-song["tracks"].forEach(track => {
-  if (track["notes"].length && !notes) {
-    notes = track["notes"];
-    notesCount = track["notes"].length;
-    totalDuration = track["duration"]; //in seconds
-  }
-})
 let completedNotes = 0;
 let syncTime = 3000; //in milliseconds
 
@@ -59,7 +49,8 @@ class Piano extends Component {
     super(props);
     this.state = {
       keys: intial,
-      started: false
+      started: false,
+      currSong: null
     }
     this.play = this.play.bind(this);
     this.stop = this.stop.bind(this);
@@ -68,6 +59,7 @@ class Piano extends Component {
     this.addOnHold = this.addOnHold.bind(this);
     this.removeOnHold = this.removeOnHold.bind(this);
     this.startClicked = this.startClicked.bind(this);
+    this.changeSong = this.changeSong.bind(this);
   }
 
   rect = {
@@ -165,6 +157,25 @@ class Piano extends Component {
     $('.Piano-keyboard').removeClass('onHold');
   }
 
+  changeSong = (id) => {
+    completedNotes = 0;
+    this.setState({
+      started: false
+    })
+    notes = null;
+    totalDuration = null;
+    notesCount = 0;
+
+    api.getMusic(id).then(result => {
+      this.setState({
+        currSong: result.data[0]
+      })
+      notesCount = this.state.currSong.notesCount;
+      totalDuration = this.state.currSong.duration;
+      notes = this.state.currSong.notes;
+    })
+  }
+
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('keyup', this.onKeyUp);
@@ -178,6 +189,9 @@ class Piano extends Component {
       ctx = document.getElementById('canvas').getContext('2d');
       syncTime = ((canvas.clientHeight / delta) / 60) * 1000;
     }
+
+    const aloneId = "60bc6c3ccf11643b3072bfe9";
+    this.changeSong(aloneId);
   }
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKeyDown);
@@ -190,32 +204,33 @@ class Piano extends Component {
 
 
   startArcade = () => {
-    const keyId = notes[completedNotes].midi - 35;
-    const duration = notes[completedNotes].duration * 1000;
-    if (completedNotes !== 0 && completedNotes !== notesCount) {
-      this.moveCanvas(keyId);
-      setTimeout(() => {
-        if (completedNotes !== notesCount) {
-          this.play(keyId, notes[completedNotes].midi);
-          // console.log(notes[completedNotes].name);
-        }
-      }, syncTime);
-    }
-    completedNotes++;
-    setTimeout(() => {
-      if (completedNotes <= notesCount) {
-        this.clearCanvas(keyId);
+    if (notes) {
+      const keyId = notes[completedNotes].midi - 35;
+      const duration = notes[completedNotes].duration * 1000;
+      if (completedNotes !== 0 && completedNotes !== notesCount) {
+        this.moveCanvas(keyId);
         setTimeout(() => {
-          this.stop(keyId);
+          if (completedNotes !== notesCount) {
+            this.play(keyId, notes[completedNotes].midi);
+          }
         }, syncTime);
       }
-      if (completedNotes < notesCount) {
-        let waitTime = notes[completedNotes].time - (notes[completedNotes - 1].time + notes[completedNotes - 1].duration);
-        setTimeout(() => {
-          this.startArcade();
-        }, waitTime * 1000);
-      }
-    }, duration);
+      completedNotes++;
+      setTimeout(() => {
+        if (completedNotes <= notesCount) {
+          this.clearCanvas(keyId);
+          setTimeout(() => {
+            this.stop(keyId);
+          }, syncTime);
+        }
+        if (completedNotes < notesCount && completedNotes !== 0) {
+          let waitTime = notes[completedNotes].time - (notes[completedNotes - 1].time + notes[completedNotes - 1].duration);
+          setTimeout(() => {
+            this.startArcade();
+          }, waitTime * 1000);
+        }
+      }, duration);
+    }
   }
 
   startClicked = () => {
@@ -229,18 +244,19 @@ class Piano extends Component {
         started: false
       })
       console.log("STARTED SET TO FALSE");
-    }, (song["duration"] + 2) * 1000);
+    }, (totalDuration + 2) * 1000);
   }
 
   render() {
-    const { keys } = this.state;
-
+    const { keys, currSong } = this.state;
 
     return (
       <div className="Piano" style={{ backgroundImage: `url(${pianoBg})` }}>
         <div className="Piano-flow">
           <canvas id="canvas" width={`${canvasWidth}px`} height={`${canvasHeight}px`}></canvas>
-          <ArcadeInfo header={song["header"]} notes={notes} completedNotes={completedNotes} />
+          {currSong &&
+            <ArcadeInfo name={currSong.name} notes={currSong.notes} completedNotes={completedNotes} />
+          }
         </div>
         <div className="Piano-keyboard" style={{ marginLeft: `${leftSpace}px` }}>
           {keyboard.map((key) => (
@@ -267,7 +283,8 @@ class Piano extends Component {
           ref={(ref) => (this.midiSounds = ref)}
           appElementName="root"
           instruments={[3]} />
-        <ArcadeMenu />
+        {currSong &&
+          <ArcadeMenu changeSong={this.changeSong} currSongId={currSong._id} />}
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -10,9 +10,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
+// import playingLogo from '../images/Running deer.gif';
+import playingLogo from '../images/playIcon1.svg';
+
 import '../styles/ArcadeMenu.css';
 
-let songs = ['Alan Walker - Alone', 'Alan Walker - Faded', 'Alan Walker - Alone', 'Alan Walker - Faded', 'Alan Walker - Alone', 'Alan Walker - Faded', 'Alan Walker - Alone', 'Alan Walker - Faded'];
+import api from '../api';
+
+let allMusicNames = [];
 
 const useStyles = makeStyles({
   list: {
@@ -43,17 +48,29 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ArcadeMenu() {
+export default function ArcadeMenu(props) {
   const classes = useStyles();
+  let { changeSong, currSongId } = props;
   const [state, setState] = React.useState({
     right: false
+  });
+
+  const [musicList, setMusicList] = useState([]);
+  api.getAllMusic().then(result => {
+    allMusicNames = [];
+    result.data.forEach(music => {
+      allMusicNames.push({
+        id: music._id,
+        name: music.name
+      });
+    });
+    setMusicList(allMusicNames);
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
 
@@ -71,12 +88,22 @@ export default function ArcadeMenu() {
       </div>
       <Divider />
       <List>
-        {songs.map((text, index) => (
-          <ListItem button key={`${text}-${index}`}>
-            {/* <ListItemIcon><MailIcon /></ListItemIcon> */}
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {musicList.map((music) => {
+          return <div key={music.id}
+            onClick={() => {
+              if (music.id !== currSongId) {
+                changeSong(music.id)
+              }
+            }}
+            className={music.id === currSongId ? "disabled-item" : ""}>
+            <ListItem button>
+              {/* <ListItemIcon><MailIcon /></ListItemIcon> */}
+              <ListItemText primary={music.name} />
+              {music.id === currSongId &&
+                <img src={playingLogo} className="playing-icon" />}
+            </ListItem>
+          </div>
+        })}
       </List>
     </div>
   );
