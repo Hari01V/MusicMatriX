@@ -5,12 +5,9 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-// import playingLogo from '../images/Running deer.gif';
 import playingLogo from '../images/playIcon1.svg';
 
 import '../styles/ArcadeMenu.css';
@@ -97,7 +94,6 @@ export default function ArcadeMenu(props) {
             }}
             className={music.id === currSongId ? "disabled-item" : ""}>
             <ListItem button>
-              {/* <ListItemIcon><MailIcon /></ListItemIcon> */}
               <ListItemText primary={music.name} />
               {music.id === currSongId &&
                 <img src={playingLogo} className="playing-icon" />}

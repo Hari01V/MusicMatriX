@@ -34,7 +34,6 @@ export default function ArcadeUpload() {
     const file = document.querySelector("#file-upload").files[0];
     const reader = new FileReader();
     reader.addEventListener("loadend", () => {
-      // console.log(reader.result);
       //ADD IT TO DATABASE
       api.addMusic(JSON.parse(reader.result));
     });

@@ -96,7 +96,6 @@ class Piano extends Component {
   }
 
   play(keyId, midiNumber) {
-    // console.log(keyId);
     this.setState({
       keys: { ...this.state.keys, [keyId]: { pressed: true } }
     });

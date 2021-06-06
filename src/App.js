@@ -18,7 +18,6 @@ function App() {
           path="/arcade"
           render={() => <Arcadepiano />} />
       </Switch>
-      {/* <Piano /> */}
     </div>
   );
 }
