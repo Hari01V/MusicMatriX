@@ -189,7 +189,7 @@ class Piano extends Component {
       syncTime = ((canvas.clientHeight / delta) / 60) * 1000;
     }
 
-    const aloneId = "60bc6c3ccf11643b3072bfe9";
+    const aloneId = "60bceae56aac9c39187b2db2";
     this.changeSong(aloneId);
   }
   componentWillUnmount() {

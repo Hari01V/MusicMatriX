@@ -72,21 +72,30 @@
 }
 
 .curs{
-  color: #ccde4c;
+  color: #31b2fa;
   font-family: 'Parisienne', cursive;
   font-size: 42px;
-  text-shadow: 0 0 1.6vw #ccde4c;
+  text-shadow: 0 0 1.6vw #31b2fa;
+}
+.highlight{
+  font-family: 'Parisienne';
+  color: #ffb743;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 40px;
+  text-shadow: 0 0 3vw #dd6b25;
 }
 .btn{
   font-family: 'Parisienne', cursive;
   cursor: pointer;
-  border: 1px solid #2ecc71;
+  border: 1px solid #31b2fa;
   border-radius: 10px;
   background-color: transparent;
   height: 50px;
   width: 170px;
-  color: #2ecc71;
+  color: #31b2fa;
   font-size: 1.5em;
+  font-weight: 800;
   margin-right: 40px;
   margin-left: 40px;
   outline: none;
@@ -95,6 +104,6 @@
 .btn:hover
 {
   color: black;
-  background-color: #2ecc71;
-  box-shadow: 0 0 1.6vw #2ecc71;
+  background-color: #31b2fa;
+  box-shadow: 0 0 1.6vw #31b2fa;
 }

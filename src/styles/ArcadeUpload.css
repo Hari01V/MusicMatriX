@@ -24,8 +24,10 @@
 .arcade-dialog .MuiDialog-container .MuiDialog-paper{
   background: #242424 !important;
   color: #2eccc5;
+  box-shadow: 0 0 1.6vw #2eccc5;
+  box-sizing: border-box;
+  border: solid 2px #2eccc5;
 }
-
 .upload-dialog-content{
   display: flex;
   flex-direction: column;
@@ -34,10 +36,77 @@
 .upload-dialog-content p{
   margin-top: 0;
 }
-.dialog-cancel-btn{
-  background: white;
-  color: black;
-  text-align: center;
-  display: inline;
+.dialog-btns-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 12px 4px;
+}
+.dialog-btn{
+  border: 1px solid #2eccc5;
+  border-radius: 12px;
+  background-color: transparent;
+  color: #2eccc5;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  letter-spacing: 1px;
+  padding: 6px 24px;
+  margin-right: 32px;
+  margin-left: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
   cursor: pointer;
+}
+.dialog-btn:disabled{
+  color: #2eccc5;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.dialog-btn:disabled:hover{
+  color: black;
+  background-color: #2eccc5;
+  box-shadow: 0 0 1.6vw #2eccc5;
+}
+
+.dialog-btn:hover
+{
+  color: black;
+  background-color: #2eccc5;
+  box-shadow: 0 0 1.6vw #2eccc5;
+}
+
+#file-upload::-webkit-file-upload-button{
+  color: 242424;
+  background-color: #2eccc5;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px solid #2eccc5;
+  margin: 4px 12px 4px 4px;
+  padding: 4px 12px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#form-dialog-title .MuiTypography-h6{
+  font-size: 28px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+}
+.form-p-md{
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+}
+.form-p-sm{
+  font-size: 14px;
+  font-family: 'Courier New', Courier, monospace;
 }

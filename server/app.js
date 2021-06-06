@@ -60,6 +60,7 @@ app.post("/music", (req, res) => {
 });
 
 app.get("/music/all", (req, res) => {
+  console.log("RETRIEVING ALL MUSIC DATA");
   Music.find({}, (err, musics) => {
     if (err) {
       console.log(err);

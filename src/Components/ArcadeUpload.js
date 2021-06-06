@@ -31,6 +31,7 @@ export default function ArcadeUpload() {
 
   const updateDatabase = (event) => {
     event.preventDefault();
+    handleClose();
     const file = document.querySelector("#file-upload").files[0];
     const reader = new FileReader();
     reader.addEventListener("loadend", () => {
@@ -49,13 +50,18 @@ export default function ArcadeUpload() {
         <DialogTitle id="form-dialog-title">Upload your Music here</DialogTitle>
         <DialogContent>
           <form action="" method="" className="upload-dialog-content">
-            <p>
-              Upload a music file in .json format to use it as Arcade music!
+            <p className="form-p-md">Note: Upload a music file in .json format only</p>
+            <p className="form-p-sm">
+              For Example, midi files (which stores music at respective tracks) can be converted to json files using external websites or app.
+              <br />
+              We use the website https://www.visipiano.com/midi-to-json-converter/
+              <br />
+              Disclaimer: Above mentioned website is not ours, just for reference.
             </p>
             <input type="file" id="file-upload" name="file-upload" onChange={checkValidation} />
-            <div>
-              <div className="dialog-cancel-btn" onClick={handleClose}>Cancel</div>
-              <button onClick={updateDatabase} disabled={!isValid}>Upload</button>
+            <div className="dialog-btns-container">
+              <div className="dialog-btn" onClick={handleClose}>Cancel</div>
+              <button onClick={updateDatabase} className="dialog-btn" disabled={!isValid}>Upload</button>
             </div>
           </form>
         </DialogContent>

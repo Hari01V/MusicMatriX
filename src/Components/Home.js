@@ -12,7 +12,7 @@ class Home extends Component {
             <p><a className="neon">Music</a><a className="flux">Matrix</a></p>
           </div><br></br>
           <div>
-            <p className="curs">Your online companion to music</p>
+            <p className="curs">Your  <span className="highlight">online companion</span> to music</p>
           </div><br></br>
           <div>
             <Link to="/piano" className="Home-link">
