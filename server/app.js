@@ -60,7 +60,7 @@ app.post("/music", (req, res) => {
 });
 
 app.get("/music/all", (req, res) => {
-  console.log("RETRIEVING ALL MUSIC DATA");
+  // console.log("RETRIEVING ALL MUSIC DATA");
   Music.find({}, (err, musics) => {
     if (err) {
       console.log(err);
@@ -71,7 +71,7 @@ app.get("/music/all", (req, res) => {
 });
 
 app.get("/music/:id", (req, res) => {
-  console.log("RETRIEVING SINGLE MUSIC DATA");
+  // console.log("RETRIEVING SINGLE MUSIC DATA");
   Music.find({ _id: req.params.id }, (err, music) => {
     if (err) {
       console.log(err);
