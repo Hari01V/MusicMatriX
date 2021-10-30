@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# MusicMatrix ♫
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Your online companion to **Music** - MERN stack project
 
-## Available Scripts
+![arcade](https://user-images.githubusercontent.com/68576993/139548793-631982ed-ceb2-4cb0-b014-d211fef7e8fb.gif)
 
-In the project directory, you can run:
+## Guide ♫
 
-### `npm start`
+2 available modes:
+- Classic
+- Arcade
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `Classic Mode`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Allows user to play around with virtual Piano
+- Interactive with respective tile animations and musics tones
 
-### `npm test`
+### `Arcade Mode`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Allows the users to upload their MIDI file
+- Visual tiles and musical notes are synced allowing us to learn the tracks
+- Access to the database
+- Dynamic tile animations and syncs
 
-### `npm run build`
+**Note:** MIDI files helps us learn more insights of the music.<br>
+For example, It contains the tracks, name, id, duration, and much more of the tone.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used ♫
+- React.js
+- Node.js
+- Express.js
+- JQuery
+- MongoDB
+- Mongoose
+- [midi-sounds-react](https://www.npmjs.com/package/midi-sounds-react)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Few Screenshots ♫
+### HomePage 🏡
+![1](https://user-images.githubusercontent.com/68576993/139543353-b046db56-4d39-4973-bb3c-a8fd16cbbbe4.JPG)
+### Arcade 🎲
+![3](https://user-images.githubusercontent.com/68576993/139543435-201f81be-776a-4fd6-aea7-5835e79ce34a.JPG)
+### Lists 📜
+![4](https://user-images.githubusercontent.com/68576993/139543368-cb7a13fe-051c-478c-849f-e187c92630f6.JPG)
